@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Indian Map</title>
+    <style>
+      * {
+        /* background-color: beige; */
+        overflow-x: hidden;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      #map {
+        width: 800px;
+        height: 650px;
+        background-image: url("india_map.jpg");
+        background-size: cover;
+        position: relative;
+      }
+      #delhi {
+        position: absolute;
+        top: 200px;
+        left: 330px;
+      }
+      #mumbai {
+        position: absolute;
+        top: 418px;
+        left: 240px;
+      }
+      #bangalore {
+        position: absolute;
+        top: 510px;
+        left: 300px;
+      }
+      #kolkata {
+        position: absolute;
+        top: 335px;
+        left: 540px;
+      }
+      #chennai {
+        position: absolute;
+        top: 540px;
+        left: 380px;
+      }
+
+      /* Style for the search bar */
+      .search-bar {
+        margin-top: 20px;
+      }
+
+      /* Style for the animation */
+      @keyframes highlight {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Style for the highlighted place */
+      .highlighted-place {
+        position: absolute;
+        background-color: rgb(0, 8, 255);
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        animation: highlight 1.5s linear;
+      }
+      .highlighted-place:hover {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        transition: all ease-in 0.2s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="map">
+        <div id="delhi"></div>
+        <div id="mumbai"></div>
+        <div id="kolkata"></div>
+        <div id="chennai"></div>
+        <div id="bangalore"></div>
+      </div>
+
+      <div class="search-bar">
+        <label for="place-select">Select a place:</label>
+        <select id="place-select" onchange="highlightPlace()">
+          <option value="">Select</option>
+          <option value="delhi">Delhi</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="kolkata">Kolkata</option>
+          <option value="chennai">Chennai</option>
+          <option value="bangalore">Bangalore</option>
+        </select>
+      </div>
+    </div>
+
+    <script>
+      function highlightPlace() {
+        var selectElement = document.getElementById("place-select");
+        var selectedPlace = selectElement.value;
+
+        // Remove previous highlights
+        var previousHighlightedElement =
+          document.querySelector(".highlighted-place");
+        if (previousHighlightedElement) {
+          previousHighlightedElement.classList.remove("highlighted-place");
+        }
+
+        // Highlight the selected place
+        var placeElement = document.getElementById(selectedPlace);
+        if (placeElement) {
+          placeElement.classList.add("highlighted-place");
+        }
+      }
+    </script>
+  </body>
+</html>
